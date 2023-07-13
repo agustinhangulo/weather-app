@@ -1,0 +1,98 @@
+:root {
+    --bg-color: #1A1C1E;
+    --primary-color: #CDE5FF;
+    --secondary-color: #51667B;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    
+    height: 100vh;
+    padding: 32px;
+}
+
+.container {
+    width: 433px;
+}
+
+/* LOCATION SEARCH */
+
+#location {
+    background-color: inherit;
+    color: var(--primary-color);
+
+    width: 100%;
+    padding: 8px 16px 8px 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+#location::placeholder {
+    color: var(--secondary-color);
+}
+
+
+
+/* LOCATION INFO */
+
+#city-name {
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+#region-country {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+
+/* WEATHER INFO */
+
+.forecast {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.weather-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#temperature {
+    font-size: 4rem;
+}
+
+/* TODO: Delete this */
+#weather-icon {
+    background-color: var(--primary-color);
+    width: 75px;
+    height: 75px;
+    border-radius: 36.5px;
+}
+
+.weather-details {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+/* EXTRA DETAILS */
+
+.extra-details {
+    display: grid;  /* Using grid allows for justify-self */
+    grid-template-columns: 1fr 1fr;
+    font-size: 2rem;
+    justify-content: start;
+}
+
+#weekday {
+    justify-self: end;
+}
