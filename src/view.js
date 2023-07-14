@@ -111,7 +111,7 @@ class View {
     const wind = document.createElement('p'); // Wind
     wind.setAttribute('id', 'wind');
     wind.textContent =
-      `Wind: ${forecast.current.wind_mph}%`;
+      `Wind: ${forecast.current.wind_mph} mph`;
     weatherDetails.appendChild(wind);
 
     const extraDetails = document.createElement('div'); // Extra details
