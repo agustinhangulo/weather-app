@@ -13,24 +13,25 @@ class Model {
   }
 
   /**
-   * 
-   * @param {*} location 
+   * Request the current weather from a given location
+   * @param {string} location A location of the form: 'city, [region,] country'
+   * @return {Current} A Current object w/ weather info from the Realtime API
    */
   async requestForecast(location) {
-    // TODO: Make location be its name or its lat/lon
-    const requestURL = `http://api.weatherapi.com/v1/search.json?key=f9fe0c76012946608ac01409231207&q=${location}`;
+    const requestURL = `http://api.weatherapi.com/v1/current.json?key=f9fe0c76012946608ac01409231207&q=${location}`;
     const response = await fetch(requestURL);
     const data = await response.json();
+    console.log(requestURL);
     console.log(data);
     return data;
   }
 
   /**
-   * Given an input, request possible matching locations using WeatherAPI's
-   * Search/AutocompleteAPI
+   * Request possible matching locations using WeatherAPI's Search/Autocomplete
+   * API on the given input
    * @param {string} input Input from form used to search for possible matching
    *                       locations
-   * @return {Array} An array of locations
+   * @return {Location[]} An array of locations
    */
   async requestLocations(input) {
     const response = await fetch(`https://api.weatherapi.com/v1/search.json?key=f9fe0c76012946608ac01409231207&q=${input}`);

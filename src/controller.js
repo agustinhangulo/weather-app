@@ -26,21 +26,49 @@ class Controller {
             .then( (locations) => {
               // Store locations (to be rendered later on 'focus')
               this.model.locations = locations;
-              console.log(locations);
-              this.view.renderLocations(locations); // Then ender locations
+
+              // Then render locations
+              const locationElements = this.view.renderLocations(locations);
+              this.initLocationResults(locationElements);
             });
-      } else { // If the input is empty, then reflect that in the model
+      } else { // If the input is empty, then reflect that
         this.model.locations = [];
-        this.view.renderLocations(this.model.locations);
+        this.view.clearLocations();
       }
     });
 
+    // When the input is focused, display locations that have previously been
+    // requested already
     locationInput.addEventListener('focus', () => {
-      this.view.renderLocations(this.model.locations);
+      const locationElements = this.view.renderLocations(this.model.locations);
+      this.initLocationResults(locationElements);
     });
 
+    // When the input is unfocused, stop displaying the locations
     locationInput.addEventListener('blur', () => {
       this.view.clearLocations();
+    });
+  }
+
+  /**
+   * idk
+   * @param {Element[]} locationElements Array of location result elements from
+   *                                 used for rendering autocompletion results
+   */
+  initLocationResults(locationElements) {
+    const locationInput = document.getElementById('location-input');
+
+    locationElements.forEach( (locElement) => {
+      // 'mousedown' event fires before 'blur' event, allowing for us to
+      // click on results and do proper functionality.
+      // Yes, this sucks, but it's the only hack working right now.
+      locElement.addEventListener( 'mousedown', () => {
+        locationInput.value = locElement.textContent;
+        this.model.requestForecast(locElement.textContent).then( (forecast) => {
+          this.view.renderForecast(forecast);
+        });
+        // TODO: Update view after getting forecast
+      });
     });
   }
 }

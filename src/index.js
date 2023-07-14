@@ -1,3 +1,3 @@
 import {Controller} from './controller';
 
-let controller = new Controller();
+const controller = new Controller();
