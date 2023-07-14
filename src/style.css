@@ -17,12 +17,12 @@ body {
 }
 
 .container {
-    width: 433px;
+    width: min(90%, 433px);
 }
 
 /* LOCATION SEARCH */
 
-#location {
+#location-input {
     background-color: inherit;
     color: var(--primary-color);
 
@@ -32,11 +32,40 @@ body {
     border-radius: 4px;
 }
 
-#location::placeholder {
+#location-input::placeholder {
     color: var(--secondary-color);
 }
 
+.input-container {
+    position: relative;
+    z-index: 1;
 
+    width: 100%;
+}
+
+#location-results {
+    position: absolute; /* Overlays results over content but not input bar*/
+    z-index: -1;
+    top: calc(1rem + 16px);
+
+    background-color: var(--bg-color);
+    width: 100%;
+
+    border: 2px solid var(--primary-color);
+    border-top: 0px;
+    border-radius: 0px 0px 4px 4px;
+
+    padding-top: 6px;  /* Aligns the first result item  properly*/
+}
+
+.location-result {
+    padding: 8px 16px 8px 16px;
+    cursor: pointer;
+}
+
+.location-result:hover {
+    background-color: var(--secondary-color);
+}
 
 /* LOCATION INFO */
 
@@ -62,8 +91,9 @@ body {
 }
 
 .weather-container {
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: 75px auto 1fr;
     gap: 16px;
 }
 
@@ -81,6 +111,7 @@ body {
 
 .weather-details {
     color: var(--secondary-color);
+    justify-self: end;
     font-size: 1rem;
 }
 

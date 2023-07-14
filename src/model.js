@@ -8,7 +8,8 @@ class Model {
    * (subject to change)
    */
   constructor() {
-
+    // Stores requested locations to prevent constant requests
+    this.locations = [];
   }
 
   /**
