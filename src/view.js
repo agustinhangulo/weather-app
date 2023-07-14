@@ -71,7 +71,6 @@ class View {
     city.textContent = forecast.location.name;
     locationCont.appendChild(city);
 
-    // TODO: What to do if there is no region?
     const regionCountry = document.createElement('h3'); // Region, Country
     regionCountry.setAttribute('id', 'region-country');
     regionCountry.textContent = forecast.location.region ?

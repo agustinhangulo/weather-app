@@ -7,7 +7,7 @@ import {View} from './view';
  */
 class Controller {
   /**
-   * Currently this constructor does nothing special (yet);
+   * Inits the model + view, as well as the input
    */
   constructor() {
     this.model = new Model();
@@ -17,6 +17,7 @@ class Controller {
 
   /**
    * This inits the autocomplete functionality when entering a location
+   * (requesting locations on input and displaying them if possible)
    */
   initLocationAutocomplete() {
     const locationInput = document.getElementById('location-input');
@@ -51,7 +52,8 @@ class Controller {
   }
 
   /**
-   * idk
+   * Inits each location result by adding an event listener for when they get
+   * clicked (requesting + displaying forecast)
    * @param {Element[]} locationElements Array of location result elements from
    *                                 used for rendering autocompletion results
    */
@@ -67,7 +69,6 @@ class Controller {
         this.model.requestForecast(locElement.textContent).then( (forecast) => {
           this.view.renderForecast(forecast);
         });
-        // TODO: Update view after getting forecast
       });
     });
   }
